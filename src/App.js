@@ -1,25 +1,30 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import ProjectForm from './components/ProjectForm.js';
+import ProjectList from './components/ProjectList';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [showForm, setShowForm] = useState(false);
+
+    const toggleForm = () => {
+        setShowForm(!showForm);
+    };
+
+    return (
+        <div className="App">
+            <header className = "App-header"> 
+                <h1>Gestión de Proyectos</h1>
+                <button onClick={toggleForm}>
+                    {showForm ? 'Cancelar' : 'Agregar Proyecto'}
+                </button>
+            
+            
+                {showForm && <ProjectForm />}
+
+                <ProjectList />
+            </header>
+        </div>
+    );
 }
 
 export default App;
